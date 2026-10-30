@@ -18,12 +18,19 @@ def cont_exit(contador:int):
     print(f"La palabra: "+"#"*cartnum+f" La palabra tiene {cartnum} letras ")
 
     while oport > 0:  
-      print("hh")
+      letra = input("INGRESA UNA LETRA: ") 
+      if letra in palabra:
+        print(f"\n¡CORRECTO!, la letra '{letra}' si existe en la palabra \n")
+      else:
+        print(f"\nERROR!!, la letra  '{letra}' No existe en la palabra")
+        oport -= 1
+        print(f"oportunidades restantes {oport}\n")
 
 
     print("Desea jugar de nuevo S/N: ")
     opcion = input()
     if opcion.lower() == "n":
+        intentos("GRACIAS","POR","JUGAR","*")
         return 0
     elif opcion.lower() == "s":
         return cont_exit(contador+1)
