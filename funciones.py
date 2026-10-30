@@ -30,7 +30,7 @@ def textree(tex1,tex2,tex3,mards):
         print(mards,inf2,mards)
         print(mards,inf3,mards)
         print(forma+'\n'+ arrib_ab)#aca agrega dos enter y luego muestra el marco de abajo del recuadro
-        return 0
+        return "-->"
 
 def aleatorio(contador,lista):
     salto = 2

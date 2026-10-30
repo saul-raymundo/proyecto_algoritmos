@@ -12,7 +12,7 @@ def cont_exit(contador:int):
         diseñotext("BIENVENIDO","AL JUEGO DE PALABRAS","*")
         input()
         textree("cuantos","oportunidades","desea?","*")
-        oport = input("CANT: ")
+        oport = input("--> ")
         try:
             oport = int(oport)
             if oport > 0:
@@ -22,19 +22,18 @@ def cont_exit(contador:int):
                 print(f"La palabra oculta: "+"".join(cartnum)+f" tiene {len(palabra)} letras ")
         
                 while oport > 0:  
-                    letra = input("INGRESA UNA LETRA: ")
+                    letra = input(textree("INGRESE","UNA","LETRA","*"))
                     if len(letra) == 1:
                         if letra.lower() in palabra:
                             print(f"\n¡CORRECTO!, la letra '{letra}' si existe en la palabra \n")
-                        
-                        for indi,carac in enumerate(palabra):
-                            if carac == letra:
-                                cartnum[indi]=letra
-                                print("".join(cartnum))
-                            else:
-                                print(f"\nERROR!!, la letra  '{letra}' No existe en la palabra")
-                                oport -= 1
-                                print(f"oportunidades restantes {oport}\n")
+                            for indi,carac in enumerate(palabra):
+                                if carac == letra:
+                                    cartnum[indi]=letra
+                                    print("".join(cartnum))
+                        else:
+                            print(f"\nERROR!!, la letra  '{letra}' No existe en la palabra")
+                            oport -= 1
+                            print(f"oportunidades restantes {oport}\n")
         
                         busca_usu = "".join(cartnum) 
                         if busca_usu == palabra:
@@ -43,8 +42,8 @@ def cont_exit(contador:int):
                         else:
                             continue
                     else:
-                        print("PORFAVOR INGRESAR UN SOLO VALOR")
-                        textree("INTENTAMOS","DENUEVO?","S/N","*")
+                        mensj_eror("ERROR!!","INGRESE","UN","UNICO","VALOR")
+                        textree("INTENTAMOS","DE NUEVO?","S/N","*")
                         opcion = input("-->")
                         if opcion.lower() == "n":
                             textree("GRACIAS","POR","JUGAR","*")
@@ -52,8 +51,8 @@ def cont_exit(contador:int):
                         elif opcion.lower() == "s":
                             return cont_exit(contador+1)
                 
-                print("Desea jugar de nuevo S/N: ")
-                opcion = input()
+                textree("JUGAMOS","DE NUEVO?","S/N","*")
+                opcion = input("-->")
                 if opcion.lower() == "n":
                     textree("GRACIAS","POR","JUGAR","*")
                     break
@@ -61,15 +60,11 @@ def cont_exit(contador:int):
                     return cont_exit(contador+1)
             else:
                 mensj_eror("POR FAVOR","INGRESA","VALORES","MAYORES A","CERO (0)","*")
-                   
-   
             
         except ValueError:
             mensj_eror("ERROR!!","POR FAVOR","INGRESA VALORES","NUMERICOS Y ENTEROS","!!","*")
             input()
 
-        
-    
 #este contador cambiara cada vez que ejecutemos el programa porque nos da un valor unico segun la RAM
 contador = id(object())
 cont_exit(contador)
