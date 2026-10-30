@@ -55,18 +55,27 @@ def cont_exit(contador:int):
                             #agregamos a una funcion de texto personalizado
                             diseñotext("PROGRESO",progress,"*")
                             input("ENTER para continuar -->")#para pasar al siguiente luego de dar un enter
+                            #para validar si la palabra ya esta completa: 
+                            result = encont_pala(progress,palabra)
+                            if result:
+                                #salir si la palabra se completo
+                                break
+                            else:
+                                #continuar por si aun falta
+                                continue
+                           
                         else: #si es false
                           oport -= 1
-                          diseñotext("OPORTUNIDADES",f"RESTANTES {oport}","*")
-                          input("ENTER para continuar -->")  
+                          if oport == 0:
+                                mensj_pers("PERDISTE",");","LA PALABRA",f"ERA: {palabra}","","*")
+                                input("ENTER para continuar -->") 
+                          else:
+                                diseñotext("OPORTUNIDADES",f"RESTANTES {oport}","*")
+                                input("ENTER para continuar -->")  
 
-                        result = encont_pala(progress,palabra)
-                        if result:
-                            break
-                        else:
-                            continue
+                        
                     else:
-                        mensj_pers("ERROR!!","INGRESE","UN","UNICO","VALOR")
+                        mensj_pers("ERROR!!","INGRESE","UN","UNICO","VALOR","*")
                         input("ENTER para continuar -->")
                         textree("INTENTAMOS","DE NUEVO?","S/N","*")
                         opcion = input("-->").strip()
@@ -75,7 +84,7 @@ def cont_exit(contador:int):
                             return 0
                         elif opcion.lower() == "s":
                             return cont_exit(contador+1)
-                
+                 
                 textree("JUGAMOS","DE NUEVO?","S/N","*")
                 opcion = input("-->").strip()
                 if opcion.lower() == "n":
