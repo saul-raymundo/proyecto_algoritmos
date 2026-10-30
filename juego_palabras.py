@@ -7,6 +7,29 @@ palabras = [
     "bosque", "desierto", "libertad", "nostalgia", "valentia", 
     "sabiduria", "tiempo", "memoria"
 ]
+def progreso(lista,palabra,letra):
+    for indi,carac in enumerate(palabra):
+        if carac == letra:
+            lista[indi]=letra
+    return "".join(lista)
+def pertenece(letra,palabra):
+    if  letra.lower() in palabra:
+        textree("CORRECTO!!", f"LA LETRA '{letra}'","SI EXISTE EN LA PALABRA","*")
+        input("ENTER para continuar -->")
+        return True
+        
+    else:
+        textree("ERROR!!",f"LA LETRA '{letra}'","NO ExISTE EN LA PALABRA","*")
+        input("ENTER para continuar -->")
+        return False
+    
+def encont_pala(progreso,palabra):
+    if progreso == palabra: # validamos si el usuario a completado la palabra
+        textree("¡GANASTE!","la palaba era: ",palabra,"*")
+        input("ENTER para continuar -->")
+        return True
+    else:
+        return False      
 def cont_exit(contador:int):
     while True:
         diseñotext("BIENVENIDO","AL JUEGO DE PALABRAS","*")
@@ -24,25 +47,21 @@ def cont_exit(contador:int):
                 while oport > 0:  
                     letra = input(textree("INGRESE","UNA","LETRA","*")).strip()
                     if len(letra) == 1:
-                        if letra.lower() in palabra:
-                            textree("CORRECTO!!", f"LA LETRA '{letra}'","SI EXISTE EN LA PALABRA","*")
-                            input("ENTER para continuar -->")
-                            for indi,carac in enumerate(palabra):
-                                if carac == letra:
-                                    cartnum[indi]=letra
-                            diseñotext("PROGRESO: ","".join(cartnum),"*")
-                            input("ENTER para continuar -->")
-                        else:
-                            textree("ERROR!!",f"LA LETRA '{letra}'","NO ExISTE EN LA PALABRA","*")
-                            input("ENTER para continuar -->")
-                            oport -= 1
-                            diseñotext("OPORTUNIDADES",f"RESTANTES {oport}","*")
-                            input("ENTER para continuar -->")
-        
-                        busca_usu = "".join(cartnum) 
-                        if busca_usu == palabra:
-                            textree("correcto","la palaba es: ",busca_usu,"*")
-                            input("ENTER para continuar -->")
+                        valbool=pertenece(letra,palabra)#devuelve un valor booleno que si la letra pertenece es True.
+                        #si es True se ejecuta este bloque
+                        if valbool:
+                            #inplemento la funcion para ir actualizando el progreso de la palabra
+                            progress = progreso(cartnum,palabra,letra)
+                            #agregamos a una funcion de texto personalizado
+                            diseñotext("PROGRESO",progress,"*")
+                            input("ENTER para continuar -->")#para pasar al siguiente luego de dar un enter
+                        else: #si es false
+                          oport -= 1
+                          diseñotext("OPORTUNIDADES",f"RESTANTES {oport}","*")
+                          input("ENTER para continuar -->")  
+
+                        result = encont_pala(progress,palabra)
+                        if result:
                             break
                         else:
                             continue
