@@ -1,4 +1,6 @@
+#importamos funciones de otro modulo 
 from funciones import *
+#crear una lista de palabras aleatorias
 palabras = [
     "elefante", "mariposa", "tigre", "delfin", "aguila", "ballena", 
     "reloj", "telescopio", "guitarra", "brujula", "espejo", "linterna", 
@@ -7,11 +9,17 @@ palabras = [
     "bosque", "desierto", "libertad", "nostalgia", "valentia", 
     "sabiduria", "tiempo", "memoria"
 ]
+#funcion para evaluar el progreso de la palabra y actualizarla
 def progreso(lista,palabra,letra):
+    #aca nosotros buscamos la letra en la palabra y a ala vez su indice para actualizarla
     for indi,carac in enumerate(palabra):
         if carac == letra:
+            #actualiza el espacio y la cambia de # por la letra correcta
             lista[indi]=letra
+    #devuelve la lista en formato de cadena        
     return "".join(lista)
+
+#funcion para validar que realmente pertenece a la cadena
 def pertenece(letra,palabra):
     if  letra.lower() in palabra:
         textree("CORRECTO!!", f"LA LETRA '{letra}'","SI EXISTE EN LA PALABRA","*")
@@ -19,17 +27,21 @@ def pertenece(letra,palabra):
         return True
         
     else:
+        #se ejecuta cuando no existe en la palabra
         textree("ERROR!!",f"LA LETRA '{letra}'","NO ExISTE EN LA PALABRA","*")
         input("ENTER para continuar -->")
         return False
-    
+
+   #funcion para ver si la palabra ya esta completa para hacerselo saber al usuario 
 def encont_pala(progreso,palabra):
     if progreso == palabra: # validamos si el usuario a completado la palabra
         textree("¡GANASTE!","la palaba era: ",palabra,"*")
         input("ENTER para continuar -->")
         return True
     else:
-        return False      
+        return False 
+#funcion recursiva que si el usuario dice que quiere volver regresa pero con un contador distinto
+# el cual sirve para que en cada vuelta este cambie de palabra sin usar la biblioteca ramdom         
 def cont_exit(contador:int):
     while True:
         diseñotext("BIENVENIDO","AL JUEGO DE PALABRAS","*")
