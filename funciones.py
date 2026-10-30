@@ -14,7 +14,7 @@ def diseñotext(text1,text2,marco):
             print(forma+'\n'+ arrib)#aca agrega dos enter y luego muestra el marco de abajo del recuadro
             return 0
 
-def intentos(tex1,tex2,tex3,mards):
+def textree(tex1,tex2,tex3,mards):
     arrib_ab = (mards.ljust(50,mards))
     print(arrib_ab)
     i = 0
