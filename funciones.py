@@ -38,7 +38,7 @@ def aleatorio(contador,lista):
     return lista[indice]
 
 
-def mensj_eror(tex1,tex2,tex3,tex4,tex5,borde):
+def mensj_pers(tex1,tex2,tex3,tex4,tex5,borde):
     arrib_ab = (borde.ljust(50,borde))
     print(arrib_ab)
     i = 0
