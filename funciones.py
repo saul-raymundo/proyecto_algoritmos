@@ -32,6 +32,12 @@ def intentos(tex1,tex2,tex3,mards):
         print(forma+'\n'+ arrib_ab)#aca agrega dos enter y luego muestra el marco de abajo del recuadro
         return 0
 
+def aleatorio(contador,lista):
+    salto = 2
+    indice = (contador * salto) % len(lista)
+    return lista[indice]
+
+
 
 
 
