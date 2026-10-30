@@ -14,6 +14,24 @@ def diseñotext(text1,text2,marco):
             print(forma+'\n'+ arrib)#aca agrega dos enter y luego muestra el marco de abajo del recuadro
             return 0
 
+def intentos(tex1,tex2,tex3,mards):
+    arrib_ab = (mards.ljust(50,mards))
+    print(arrib_ab)
+    i = 0
+    while True:
+        forma = (mards+ " " * 49 + mards)#esta agrega los "*" a los costados mientras tiene 49 espacios dentro
+        print(forma)
+        i +=1
+        if i == 1:#siginifica que luego de dos lineas de espacios con asterisco se ejecuta lo siguiente
+            inf = tex1.center(47)
+            inf2 = tex2.center(47)
+            inf3 = tex3.center(47)
+        print(mards,inf,mards)
+        print(mards,inf2,mards)
+        print(mards,inf3,mards)
+        print(forma+'\n'+ arrib_ab)#aca agrega dos enter y luego muestra el marco de abajo del recuadro
+        return 0
+
 
 
 
