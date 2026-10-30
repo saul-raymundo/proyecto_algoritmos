@@ -39,14 +39,23 @@ def cont_exit(contador:int):
             break
         else:
             continue
-      
-        print("Desea jugar de nuevo S/N: ")
-        opcion = input()
-        if opcion.lower() == "n":
+      else:
+         print("PORFAVOR INGRESAR UN SOLO VALOR")
+         textree("INTENTAMOS","DENUEVO","S/N","*")
+         opcion = input("-->")
+         if opcion.lower() == "n":
             textree("GRACIAS","POR","JUGAR","*")
             return 0
-        elif opcion.lower() == "s":
+         elif opcion.lower() == "s":
             return cont_exit(contador+1)
+      
+    print("Desea jugar de nuevo S/N: ")
+    opcion = input()
+    if opcion.lower() == "n":
+        textree("GRACIAS","POR","JUGAR","*")
+        return 0
+    elif opcion.lower() == "s":
+        return cont_exit(contador+1)
       
 
     
