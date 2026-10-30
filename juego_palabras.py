@@ -13,12 +13,12 @@ def cont_exit(contador:int):
     intentos("cuantos","oportunidades","desea?","*")
     oport = int(input("CANT: "))
     palabra = aleatorio(contador, palabras)
+    cartnum = len(palabra)
     print(palabra)
+    print(f"La palabra: "+"#"*cartnum+f" La palabra tiene {cartnum} letras ")
 
     while oport > 0:  
-      contador += 1 
-      print("hello")  
-      oport -= 1
+      print("hh")
 
 
     print("Desea jugar de nuevo S/N: ")
@@ -28,6 +28,6 @@ def cont_exit(contador:int):
     elif opcion.lower() == "s":
         return cont_exit(contador+1)
     
-    #aca nosotros empezamos con nuestro codigo de calcular la tarea
-    
-cont_exit(2)
+#este contador cambiara cada vez que ejecutemos el programa porque nos da un valor unico segun la RAM
+contador = id(object())
+cont_exit(contador)
