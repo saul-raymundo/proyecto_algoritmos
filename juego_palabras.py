@@ -8,54 +8,61 @@ palabras = [
     "sabiduria", "tiempo", "memoria"
 ]
 def cont_exit(contador:int):
-    diseñotext("BIENVENIDO","AL JUEGO DE PALABRAS","*")
-    input()
-    textree("cuantos","oportunidades","desea?","*")
-    oport = int(input("CANT: "))
-    palabra = aleatorio(contador, palabras)
-    cartnum =["#"]* len(palabra)
-    print(palabra)
-    print(f"La palabra: "+"".join(cartnum)+f" La palabra tiene {len(palabra)} letras ")
+    while True:
+        diseñotext("BIENVENIDO","AL JUEGO DE PALABRAS","*")
+        input()
+        textree("cuantos","oportunidades","desea?","*")
+        oport = input("CANT: ")
+        try:
+            oport = int(oport)
+            palabra = aleatorio(contador, palabras)
+            cartnum =["#"]* len(palabra)
+            print(palabra)
+            print(f"La palabra: "+"".join(cartnum)+f" La palabra tiene {len(palabra)} letras ")
+    
+            while oport > 0:  
+                letra = input("INGRESA UNA LETRA: ")
+                if len(letra) == 1:
+                    if letra.lower() in palabra:
+                        print(f"\n¡CORRECTO!, la letra '{letra}' si existe en la palabra \n")
+                    
+                    for indi,carac in enumerate(palabra):
+                        if carac == letra:
+                            cartnum[indi]=letra
+                            print("".join(cartnum))
+                        else:
+                            print(f"\nERROR!!, la letra  '{letra}' No existe en la palabra")
+                            oport -= 1
+                            print(f"oportunidades restantes {oport}\n")
+    
+                    busca_usu = "".join(cartnum) 
+                    if busca_usu == palabra:
+                        textree("correcto","la palaba es: ",busca_usu,"*")
+                        break
+                    else:
+                        continue
+                else:
+                    print("PORFAVOR INGRESAR UN SOLO VALOR")
+                    textree("INTENTAMOS","DENUEVO","S/N","*")
+                    opcion = input("-->")
+                    if opcion.lower() == "n":
+                        textree("GRACIAS","POR","JUGAR","*")
+                        return 0
+                    elif opcion.lower() == "s":
+                        return cont_exit(contador+1)
+            
+            print("Desea jugar de nuevo S/N: ")
+            opcion = input()
+            if opcion.lower() == "n":
+                textree("GRACIAS","POR","JUGAR","*")
+                break
+            elif opcion.lower() == "s":
+                return cont_exit(contador+1)
+            
+        except ValueError:
+            print("favor ingresar un valor entrero")
 
-    while oport > 0:  
-      letra = input("INGRESA UNA LETRA: ")
-      if len(letra) == 1:
-        if letra.lower() in palabra:
-            print(f"\n¡CORRECTO!, la letra '{letra}' si existe en la palabra \n")
         
-        for indi,carac in enumerate(palabra):
-           #if 
-            if carac == letra:
-              cartnum[indi]=letra
-              print("".join(cartnum))
-        else:
-            print(f"\nERROR!!, la letra  '{letra}' No existe en la palabra")
-            oport -= 1
-            print(f"oportunidades restantes {oport}\n")
-
-        busca_usu = "".join(cartnum) 
-        if busca_usu == palabra:
-            textree("correcto","la palaba es: ",busca_usu,"*")
-            break
-        else:
-            continue
-      else:
-         print("PORFAVOR INGRESAR UN SOLO VALOR")
-         textree("INTENTAMOS","DENUEVO","S/N","*")
-         opcion = input("-->")
-         if opcion.lower() == "n":
-            textree("GRACIAS","POR","JUGAR","*")
-            return 0
-         elif opcion.lower() == "s":
-            return cont_exit(contador+1)
-      
-    print("Desea jugar de nuevo S/N: ")
-    opcion = input()
-    if opcion.lower() == "n":
-        textree("GRACIAS","POR","JUGAR","*")
-        return 0
-    elif opcion.lower() == "s":
-        return cont_exit(contador+1)
       
 
     
