@@ -48,16 +48,22 @@ def cont_exit(contador:int):
         input("ENTER para continuar -->")
         textree("cuantas","oportunidades","desea?","*")
         oport = input("--> ").strip()
+        #definido por si el valor del usuario al convertirlo a int da error entonces salte un mensaje amigable y no bloquea
         try:
             oport = int(oport)
+            #validamos si el valor es mayor a cero para empezar con el programa
             if oport > 0:
+                #utilizamos la funcion que es como un ramdon pero a mi modo
                 palabra = aleatorio(contador, palabras)
                 cartnum =["#"]* len(palabra)
                 print(palabra)
+                #muestra la palabra en un texto personalizado con bordes
                 textree("la palabraoculta es: ","".join(cartnum),f"tiene {len(palabra)} letras","*")
                 input("ENTER para continuar -->")
+                #se ejecuta el cilo si las oportunidades del usuario son mayores a cero
                 while oport > 0:  
                     letra = input(textree("INGRESE","UNA","LETRA","*")).strip()
+                    #la condicion significa que si el usuario ingresa una sola letra entonces se ejecuta si no es error. 
                     if len(letra) == 1:
                         valbool=pertenece(letra,palabra)#devuelve un valor booleno que si la letra pertenece es True.
                         #si es True se ejecuta este bloque
@@ -76,27 +82,31 @@ def cont_exit(contador:int):
                                 #continuar por si aun falta
                                 continue
                            
-                        else: #si es false
+                        else: #si es false (la letra no pertenece a la palabra)
                           oport -= 1
                           if oport == 0:
+                                #muesta el mensaje si al usuario ya agoto sus vidas
                                 mensj_pers("PERDISTE",");","LA PALABRA",f"ERA: {palabra}","","*")
                                 input("ENTER para continuar -->") 
+                            #se ejecuta si el usuario aun le quedan oportunidades     
                           else:
                                 diseñotext("OPORTUNIDADES",f"RESTANTES {oport}","*")
                                 input("ENTER para continuar -->")  
 
-                        
+                    #si el usuario ingresa mas de dos letras o valores a la vez no vale    
                     else:
                         mensj_pers("ERROR!!","INGRESE","UN","UNICO","VALOR","*")
                         input("ENTER para continuar -->")
                         textree("INTENTAMOS","DE NUEVO?","S/N","*")
                         opcion = input("-->").strip()
+                        #condicion que funciona para reiniciar el programa otra vez
                         if opcion.lower() == "n":
                             textree("GRACIAS","POR","JUGAR","*")
                             return 0
                         elif opcion.lower() == "s":
                             return cont_exit(contador+1)
-                 
+                        
+                #se ejecuta si al usuaio ya no le quedan mas oportunidades, (ya agoto todas)
                 textree("JUGAMOS","DE NUEVO?","S/N","*")
                 opcion = input("-->").strip()
                 if opcion.lower() == "n":
@@ -104,10 +114,12 @@ def cont_exit(contador:int):
                     break
                 elif opcion.lower() == "s":
                     return cont_exit(contador+1)
+            #este bloque se ejecuta si el valor asignado es menor a cero    
             else:
                 mensj_pers("POR FAVOR","INGRESA","VALORES","MAYORES A","CERO (0)","*")
                 input("ENTER para continuar -->")
-            
+
+        #se ejecuta si el valor del usuario no es entero y lanza una excepcion pero ya la tenemos controlada
         except ValueError:
             mensj_pers("ERROR!!","POR FAVOR","INGRESA VALORES","NUMERICOS Y ENTEROS","!!","*")
             input("ENTER para continuar -->")
